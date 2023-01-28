@@ -36,7 +36,6 @@ const Carousel = () => {
       </Link>
     );
   });
-
   const responsive = {
     0: {
       items: 2,
@@ -47,7 +46,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className="max-w-lg mt-20 md:max-w-2xl lg:max-w-4xl text-center">
+    <div className="max-w-sm mt-20 md:max-w-2xl lg:max-w-4xl text-center ">
       <AliceCarousel
         mouseTracking
         infinite
