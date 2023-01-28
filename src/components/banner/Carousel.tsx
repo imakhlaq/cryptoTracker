@@ -35,25 +35,29 @@ const Carousel = () => {
     );
   });
   const responsive = {
-    0: {
+    350: {
       items: 2,
     },
-    512: {
-      items: 4,
+    450: {
+      items: 3,
+    },
+    700: {
+      items: 5,
     },
   };
 
   return (
-    <div className="max-w-[26rem] mt-20 md:max-w-3xl lg:max-w-4xl text-center ">
+    <div className="max-w-sm mt-20 md:max-w-3xl lg:max-w-4xl text-center ">
       <AliceCarousel
         mouseTracking
         infinite
         autoPlayInterval={1000}
         animationDuration={1500}
         disableDotsControls
+        disableButtonsControls
         responsive={responsive}
-        autoPlay
         items={items}
+        autoPlay
       />
     </div>
   );
