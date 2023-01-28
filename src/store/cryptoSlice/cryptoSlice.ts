@@ -5,7 +5,7 @@ type InitialType = {
   symbol: string;
 };
 
-const initialState: InitialType = {} as InitialType;
+const initialState: InitialType = { currency: "USD", symbol: "INR" };
 
 const cryptoSlice = createSlice({
   name: "crypto",
@@ -23,3 +23,5 @@ const cryptoSlice = createSlice({
 });
 
 export default cryptoSlice.reducer;
+
+export const { changeCurrency } = cryptoSlice.actions;

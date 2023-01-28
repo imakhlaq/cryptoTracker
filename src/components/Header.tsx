@@ -1,7 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { changeCurrency } from "../store/cryptoSlice/cryptoSlice";
 
 const Header = () => {
   const navigator = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const currency = useAppSelector((state) => state.crypto.currency);
+  console.log(currency);
 
   return (
     <header className="px-10 py-4 flex justify-between md:justify-around shadow-xl items-center">
@@ -12,6 +18,9 @@ const Header = () => {
         Crypto Tracker
       </h1>
       <select
+        onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
+          dispatch(changeCurrency(event.target.value))
+        }
         name="currency"
         className="rounded text-white font-semibold focus:outline-none bg-[#14161a] flex justify-center items-center p-2 border-2 border-black"
       >

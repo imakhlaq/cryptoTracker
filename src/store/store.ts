@@ -6,6 +6,5 @@ const store = configureStore({
 });
 export default store;
 
-//type for our useSelector state type
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch; // Here we export the store's dispatch type
+export type RootState = ReturnType<typeof store.getState>; // Here we export the store's state
