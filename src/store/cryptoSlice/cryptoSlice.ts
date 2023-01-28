@@ -1,15 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type initialType = {
-  name: string;
+type InitialType = {
+  currency: string;
+  symbol: string;
 };
 
-const initialState: initialType[] = [];
+const initialState: InitialType = {} as InitialType;
 
 const cryptoSlice = createSlice({
   name: "crypto",
   initialState,
-  reducers: {},
+  reducers: {
+    changeCurrency(state, action: PayloadAction<string>) {
+      state.currency = action.payload;
+      if (state.currency === "INR") {
+        state.symbol = "₹";
+      } else {
+        state.symbol = "$";
+      }
+    },
+  },
 });
 
 export default cryptoSlice.reducer;
