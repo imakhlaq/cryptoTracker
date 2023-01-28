@@ -4,7 +4,7 @@ const Header = () => {
   const navigator = useNavigate();
 
   return (
-    <header className="px-10 py-4 flex justify-between md:justify-around shadow-xl">
+    <header className="px-10 py-4 flex justify-between md:justify-around shadow-xl items-center">
       <h1
         onClick={() => navigator("/")}
         className="text-[yellow] font-bold text-lg md:text-2xl cursor-pointer"
