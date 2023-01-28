@@ -11,7 +11,7 @@ type InitialType = {
 
 const initialState: InitialType = {
   currency: "USD",
-  symbol: "INR",
+  symbol: "$",
   trendingCoins: [],
 };
 
