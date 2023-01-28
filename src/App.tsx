@@ -5,13 +5,13 @@ import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <div>
+    <main className="bg-[#14161a] h-screen text-white">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/coins/:id" element={<CoinPage />} />
       </Routes>
-    </div>
+    </main>
   );
 };
 export default App;
