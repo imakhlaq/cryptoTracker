@@ -8,7 +8,7 @@ type InitialType = {
   symbol: string;
   trendingCoins: CoinType[];
   allCoins: CoinType[];
-  singleCoin: {};
+  singleCoin: any;
 };
 
 const initialState: InitialType = {
@@ -39,6 +39,7 @@ export const fetchSingleCoin = createAsyncThunk(
   "crypto/fetchSingleCoin",
   async (id: string) => {
     const { data } = await axios.get(SingleCoin(id));
+    console.log(data);
 
     return data;
   }
@@ -75,6 +76,7 @@ const cryptoSlice = createSlice({
         fetchSingleCoin.fulfilled,
         (state, action: PayloadAction<any>) => {
           state.singleCoin = action.payload;
+          console.log(action.payload);
         }
       );
   },
