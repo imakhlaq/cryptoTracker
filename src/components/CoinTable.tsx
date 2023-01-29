@@ -104,7 +104,9 @@ const CoinTable = () => {
           </div>
         </div>
       </section>
-      <Pagination page={page} setPage={setPage} length={allCoins.length} />
+      <div className="flex justify-center items-center">
+        <Pagination page={page} setPage={setPage} length={allCoins.length} />
+      </div>
     </>
   );
 };
