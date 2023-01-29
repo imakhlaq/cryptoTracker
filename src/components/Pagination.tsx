@@ -11,7 +11,7 @@ const Paggination = ({ page, setPage, length }: Props) => {
     setPage(i + 1);
   };
   return (
-    <div className="flex justify-center items-center gap-5 mt-10 mb-10">
+    <div className="flex justify-center items-center gap-2 md:gap-5 mt-10 mb-10">
       <span className=" cursor-pointer">
         <GrPrevious />
       </span>
