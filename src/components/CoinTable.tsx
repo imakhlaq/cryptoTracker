@@ -39,7 +39,7 @@ const CoinTable = () => {
           {allCoins.map((coin) => {
             return (
               <div className="grid grid-cols-4 gap-4 place-items-center">
-                <div className="flex flex-col items-start md:flex-row justify-center md:gap-3 md:justify-start">
+                <div className="flex flex-col md:flex-row justify-start md:gap-3 md:justify-start">
                   <img src={coin.image} alt={coin.name} className="h-10 " />
                   <div className="flex justify-center items-center flex-col md:flex-row md:gap-3">
                     <p className=" uppercase">{coin.symbol}</p>
