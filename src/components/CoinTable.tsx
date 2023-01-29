@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchAllCoins } from "../store/cryptoSlice/cryptoSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 
@@ -7,6 +8,7 @@ const CoinTable = () => {
   const allCoins = useAppSelector((state) => state.crypto.allCoins);
   const currency = useAppSelector((state) => state.crypto.currency);
   const dispatch = useAppDispatch();
+  const navigator = useNavigate();
 
   useEffect(() => {
     dispatch(fetchAllCoins(currency));
@@ -38,12 +40,15 @@ const CoinTable = () => {
         <div className="flex flex-col gap-6">
           {allCoins.map((coin) => {
             return (
-              <div className="grid grid-cols-4 gap-4 place-items-center">
-                <div className="flex flex-col md:flex-row justify-start md:gap-3 md:justify-start">
-                  <img src={coin.image} alt={coin.name} className="h-10 " />
+              <div
+                onClick={() => navigator(`/coins/${coin.id}`)}
+                className="grid grid-cols-4 gap-4 place-items-center cursor-pointer shadow-xl"
+              >
+                <div className="flex flex-col justify-center items-center gap-2 md:flex-row md:gap-3 md:justify-start">
+                  <img src={coin.image} alt={coin.name} className="h-10 w-10" />
                   <div className="flex justify-center items-center flex-col md:flex-row md:gap-3">
-                    <p className=" uppercase">{coin.symbol}</p>
-                    <p>{coin.name}</p>
+                    <p className="uppercase">{coin.symbol}</p>
+                    <p className="text-center">{coin.name}</p>
                   </div>
                 </div>
                 <div>
