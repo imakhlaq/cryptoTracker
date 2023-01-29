@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { TrendingCoins, CoinList } from "../../api/configs";
+import { TrendingCoins, CoinList, SingleCoin } from "../../api/configs";
 import { CoinType } from "../../../typing";
 
 type InitialType = {
@@ -8,6 +8,7 @@ type InitialType = {
   symbol: string;
   trendingCoins: CoinType[];
   allCoins: CoinType[];
+  singleCoin: {};
 };
 
 const initialState: InitialType = {
@@ -15,6 +16,7 @@ const initialState: InitialType = {
   symbol: "$",
   trendingCoins: [],
   allCoins: [],
+  singleCoin: {},
 };
 
 export const fetchTrendingCoins = createAsyncThunk(
@@ -29,9 +31,16 @@ export const fetchAllCoins = createAsyncThunk(
   "crypto/fetchAllCoins",
   async (currency: string, thunkAPI) => {
     const { data } = await axios.get(CoinList(currency));
-    console.log(data);
-
     return [...data];
+  }
+);
+
+export const fetchSingleCoin = createAsyncThunk(
+  "crypto/fetchSingleCoin",
+  async (id: string) => {
+    const { data } = await axios.get(SingleCoin(id));
+
+    return data;
   }
 );
 
@@ -60,6 +69,12 @@ const cryptoSlice = createSlice({
         fetchAllCoins.fulfilled,
         (state, action: PayloadAction<CoinType[]>) => {
           state.allCoins = action.payload;
+        }
+      )
+      .addCase(
+        fetchSingleCoin.fulfilled,
+        (state, action: PayloadAction<any>) => {
+          state.singleCoin = action.payload;
         }
       );
   },

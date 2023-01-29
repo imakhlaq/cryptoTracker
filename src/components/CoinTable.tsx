@@ -60,6 +60,7 @@ const CoinTable = () => {
                 let profit = coin.price_change_24h >= 0;
                 return (
                   <div
+                    key={coin.id}
                     onClick={() => navigator(`/coins/${coin.id}`)}
                     className="grid grid-cols-4 gap-4 place-items-center cursor-pointer shadow-xl md:h-20 hover:bg-black/80 py-3 rounded-lg"
                   >
