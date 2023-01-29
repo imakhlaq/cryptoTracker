@@ -4,7 +4,7 @@ export type RoiType = {
   percentage: number;
 };
 
-export type TrendingCoinType = {
+export type CoinType = {
   id: string;
   symbol: string;
   name: string;
