@@ -41,13 +41,13 @@ const Carousel = () => {
     450: {
       items: 3,
     },
-    700: {
+    1000: {
       items: 5,
     },
   };
 
   return (
-    <div className="max-w-sm mt-20 md:max-w-3xl lg:max-w-4xl text-center ">
+    <div className="max-w-sm mt-20 md:max-w-3xl lg:max-w-4xl text-center mb-10">
       <AliceCarousel
         mouseTracking
         infinite
