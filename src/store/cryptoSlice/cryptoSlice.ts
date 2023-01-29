@@ -7,12 +7,14 @@ type InitialType = {
   currency: string;
   symbol: string;
   trendingCoins: CoinType[];
+  allCoins: CoinType[];
 };
 
 const initialState: InitialType = {
   currency: "USD",
   symbol: "$",
   trendingCoins: [],
+  allCoins: [],
 };
 
 export const fetchTrendingCoins = createAsyncThunk(
@@ -27,6 +29,8 @@ export const fetchAllCoins = createAsyncThunk(
   "crypto/fetchAllCoins",
   async (currency: string, thunkAPI) => {
     const { data } = await axios.get(CoinList(currency));
+    console.log(data);
+
     return [...data];
   }
 );
@@ -54,7 +58,9 @@ const cryptoSlice = createSlice({
       )
       .addCase(
         fetchAllCoins.fulfilled,
-        (state, action: PayloadAction<CoinType[]>) => {}
+        (state, action: PayloadAction<CoinType[]>) => {
+          state.allCoins = action.payload;
+        }
       );
   },
 });
