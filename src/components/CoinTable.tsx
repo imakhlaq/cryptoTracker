@@ -29,20 +29,31 @@ const CoinTable = () => {
         />
       </div>
       <div className="mt-10 flex flex-col">
-        <div className="flex justify-around bg-[#b19704] text-lg py-4 text-black font-bold mb-8">
+        <div className="grid grid-cols-4 gap-4 bg-[#b19704] text-lg py-4 text-black font-bold mb-8 place-items-center">
           <p>Coin</p>
           <p>Price</p>
           <p>24h Change</p>
           <p>Market Cap</p>
         </div>
-        <div>
+        <div className="flex flex-col gap-6">
           {allCoins.map((coin) => {
             return (
-              <div>
-                <div className="flex flex-col items-start gap-3">
-                  <img src={coin.image} alt={coin.name} className="h-16" />
-                  <p>{coin.symbol}</p>
-                  <p>{coin.name}</p>
+              <div className="grid grid-cols-4 gap-4 place-items-center">
+                <div className="flex flex-col items-start md:flex-row justify-center md:gap-3 md:justify-start">
+                  <img src={coin.image} alt={coin.name} className="h-10 " />
+                  <div className="flex justify-center items-center flex-col md:flex-row md:gap-3">
+                    <p className=" uppercase">{coin.symbol}</p>
+                    <p>{coin.name}</p>
+                  </div>
+                </div>
+                <div>
+                  <p>{coin.current_price}</p>
+                </div>
+                <div>
+                  <p>{coin.price_change_24h.toFixed(2)}</p>
+                </div>
+                <div>
+                  <p>{coin.market_cap}</p>
                 </div>
               </div>
             );
