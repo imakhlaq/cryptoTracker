@@ -9,6 +9,8 @@ type InitialType = {
   trendingCoins: CoinType[];
   allCoins: CoinType[];
   singleCoin: any;
+  loading: boolean;
+  error: null | string;
 };
 
 const initialState: InitialType = {
@@ -17,6 +19,8 @@ const initialState: InitialType = {
   trendingCoins: [],
   allCoins: [],
   singleCoin: {},
+  loading: false,
+  error: null,
 };
 
 export const fetchTrendingCoins = createAsyncThunk(
@@ -37,11 +41,13 @@ export const fetchAllCoins = createAsyncThunk(
 
 export const fetchSingleCoin = createAsyncThunk(
   "crypto/fetchSingleCoin",
-  async (id: string) => {
-    const { data } = await axios.get(SingleCoin(id));
-    console.log(data);
-
-    return data;
+  async (id: string, thunkApi) => {
+    try {
+      const { data } = await axios.get(SingleCoin(id));
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
@@ -75,10 +81,20 @@ const cryptoSlice = createSlice({
       .addCase(
         fetchSingleCoin.fulfilled,
         (state, action: PayloadAction<any>) => {
-          state.singleCoin = action.payload;
           console.log(action.payload);
+          state.singleCoin = action.payload;
+          state.loading = false;
         }
-      );
+      )
+      .addCase(fetchSingleCoin.pending, (state) => {
+        console.log(state.loading);
+        state.loading = true;
+        console.log(state.loading);
+      })
+      .addCase(fetchSingleCoin.rejected, (state) => {
+        state.loading = false;
+        state.error = "error";
+      });
   },
 });
 

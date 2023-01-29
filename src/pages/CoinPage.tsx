@@ -11,23 +11,23 @@ const CoinPage = () => {
   const { id } = useParams();
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchSingleCoin(id!));
-  }, []);
   const singleCoin = useAppSelector((state) => state.crypto.singleCoin);
   const currency = useAppSelector((state) => state.crypto.currency);
   const symbol = useAppSelector((state) => state.crypto.symbol);
+  const loading = useAppSelector((state) => state.crypto.loading);
 
-  console.log(singleCoin);
+  useEffect(() => {
+    console.log("code");
+    dispatch(fetchSingleCoin(id!));
+  }, []);
 
-  if (!singleCoin.market_cap) {
+  if (loading) {
     return <p>Loading</p>;
   }
 
   return (
     <div className="flex flex-col lg:flex-row">
-      <div className="mt-10">
+      <div className="mt-10 md:border-r-2 md:border-[gray] md:p-10">
         <div className="flex justify-center items-center flex-col">
           <img
             src={singleCoin?.image?.large}
@@ -35,24 +35,23 @@ const CoinPage = () => {
             className=" h-64 mb-14"
           />
           <h2 className="text-6xl font-semibold">{singleCoin.name}</h2>
-          <p className="text-center px-5"></p>
-          {/* <p>{parse(singleCoin.description.en.split(". ")[0])}</p> */}
-          <p className="text-center px-5 mt-4 max-w-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quis
-            quibusdam eaque quas. Accusantium quisquam commodi officiis,
-            architecto dolorem quia!
+          <p className="text-center px-5 max-w-md lg:max-w-lg mt-3 tracking-wide">
+            {parse(singleCoin?.description?.en.split(". ")[0])}
           </p>
         </div>
-        <div className="text-left font-extrabold text-3xl flex flex-col gap-4 mt-10 ml-4">
+        <div className="text-left md:text-center md:items-start font-extrabold text-3xl flex flex-col gap-4 mt-10 ml-12">
           <p>
-            Rank: <span>{singleCoin.coingecko_rank}</span>
+            Rank:{" "}
+            <span className=" font-extralight">
+              {singleCoin?.coingecko_rank}
+            </span>
           </p>
           <p>
             Current Price:{" "}
-            <span>
+            <span className=" font-extralight">
               {symbol}{" "}
               {numberWithCommas(
-                singleCoin.market_data.current_price[
+                singleCoin?.market_data?.current_price[
                   currency.toLocaleLowerCase()
                 ]
               )}
@@ -60,9 +59,14 @@ const CoinPage = () => {
           </p>
           <p>
             Market Cap:{" "}
-            <span>
+            <span className="font-extralight">
               {symbol}{" "}
-              {numberWithCommas(singleCoin.market_cap.toString().slice(0, -6))}M
+              {numberWithCommas(
+                singleCoin.market_data?.market_cap[currency.toLocaleLowerCase()]
+              )
+                .toString()
+                .slice(0, 6)}
+              M{" "}
             </span>
           </p>
         </div>

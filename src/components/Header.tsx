@@ -7,7 +7,6 @@ const Header = () => {
   const dispatch = useAppDispatch();
 
   const currency = useAppSelector((state) => state.crypto.currency);
-  console.log(currency);
 
   return (
     <header className="px-10 py-4 flex justify-between md:justify-around shadow-xl items-center">
