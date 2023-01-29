@@ -23,7 +23,7 @@ const Carousel = () => {
           <div className="flex justify-center items-center gap-3">
             <span className="text-[gold]">{coin.symbol}</span>
             <span className={`${profit ? "text-green-500" : "text-red-600"}`}>
-              {profit && "+"} {coin.price_change_percentage_24h.toFixed(2)}
+            {profit ?"+":""} {coin.price_change_percentage_24h.toFixed(2)}
             </span>
           </div>
           <div className="flex items-center justify-center gap-2 text-base md:text-base font-bold lg:text-2xl">

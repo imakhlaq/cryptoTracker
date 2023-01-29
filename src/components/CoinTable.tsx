@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchAllCoins } from "../store/cryptoSlice/cryptoSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { numberWithCommas } from "../utils/priseWithCommas";
 
 const CoinTable = () => {
   const [search, setSearch] = useState("");
   const allCoins = useAppSelector((state) => state.crypto.allCoins);
   const currency = useAppSelector((state) => state.crypto.currency);
+  const symbol = useAppSelector((state) => state.crypto.symbol);
   const dispatch = useAppDispatch();
   const navigator = useNavigate();
 
@@ -39,26 +41,39 @@ const CoinTable = () => {
         </div>
         <div className="flex flex-col gap-6">
           {allCoins.map((coin) => {
+            let profit = coin.price_change_24h >= 0;
             return (
               <div
                 onClick={() => navigator(`/coins/${coin.id}`)}
-                className="grid grid-cols-4 gap-4 place-items-center cursor-pointer shadow-xl"
+                className="grid grid-cols-4 gap-4 place-items-center cursor-pointer shadow-xl md:h-20"
               >
-                <div className="flex flex-col justify-center items-center gap-2 md:flex-row md:gap-3 md:justify-start">
+                <div className="flex flex-col justify-center items-center gap-2 md:flex-row md:gap-2 md:justify-start">
                   <img src={coin.image} alt={coin.name} className="h-10 w-10" />
                   <div className="flex justify-center items-center flex-col md:flex-row md:gap-3">
-                    <p className="uppercase">{coin.symbol}</p>
-                    <p className="text-center">{coin.name}</p>
+                    <p className="uppercase text-2xl">{coin.symbol}</p>
+                    <p className="text-center text-xs">{coin.name}</p>
                   </div>
                 </div>
                 <div>
-                  <p>{coin.current_price}</p>
+                  <p className="text-sm md:text-lg">
+                    {numberWithCommas(coin.current_price + "")}
+                  </p>
                 </div>
                 <div>
-                  <p>{coin.price_change_24h.toFixed(2)}</p>
+                  <p
+                    className={`text-sm md:text-lg ${
+                      profit ? "text-green-500" : "text-red-600"
+                    }`}
+                  >
+                    {profit ? "+" : ""}{" "}
+                    {coin.price_change_percentage_24h.toFixed(2)}
+                  </p>
                 </div>
                 <div>
-                  <p>{coin.market_cap}</p>
+                  <p className="text-sm md:text-lg">
+                    {symbol}{" "}
+                    {numberWithCommas(coin.market_cap.toString().slice(0, -6))}M
+                  </p>
                 </div>
               </div>
             );
