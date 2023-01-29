@@ -21,13 +21,14 @@ const CoinPage = () => {
     dispatch(fetchSingleCoin(id!));
   }, []);
 
+  console.log(loading);
   if (loading) {
-    return <p>Loading</p>;
+    return;
   }
 
   return (
     <div className="flex flex-col lg:flex-row">
-      <div className="mt-10 md:border-r-2 md:border-[gray] md:p-10">
+      <div className="mt-10 md:border-r-2 md:border-[gray] md:p-10 max-w-4xl">
         <div className="flex justify-center items-center flex-col">
           <img
             src={singleCoin?.image?.large}
@@ -36,7 +37,7 @@ const CoinPage = () => {
           />
           <h2 className="text-6xl font-semibold">{singleCoin.name}</h2>
           <p className="text-center px-5 max-w-md lg:max-w-lg mt-3 tracking-wide">
-            {parse(singleCoin?.description?.en.split(". ")[0])}
+            {parse(singleCoin?.description?.en.split(".")[0])}
           </p>
         </div>
         <div className="text-left md:text-center md:items-start font-extrabold text-3xl flex flex-col gap-4 mt-10 ml-12">
@@ -62,7 +63,9 @@ const CoinPage = () => {
             <span className="font-extralight">
               {symbol}{" "}
               {numberWithCommas(
-                singleCoin.market_data?.market_cap[currency.toLocaleLowerCase()]
+                singleCoin?.market_data?.market_cap[
+                  currency.toLocaleLowerCase()
+                ]
               )
                 .toString()
                 .slice(0, 6)}
