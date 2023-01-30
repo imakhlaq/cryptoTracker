@@ -7,6 +7,7 @@ import { Chart, PointElement } from "chart.js/auto";
 import { chartDays } from "../api/data";
 import Loading from "./Loading";
 
+
 const CoinInfo = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();

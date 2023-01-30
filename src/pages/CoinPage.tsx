@@ -22,7 +22,6 @@ const CoinPage = () => {
   const fetchSingleCoin = async () => {
     try {
       const { data } = await axios.get(SingleCoin(id!));
-
       setSingleCoin(data);
     } catch (err) {
       console.log(err);
