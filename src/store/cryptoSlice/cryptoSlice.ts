@@ -66,7 +66,6 @@ export const fetchCoinHistory = createAsyncThunk(
   "crypto/fetchCoinHistory",
   async ({ id, days, currency }: HistoryType) => {
     const { data } = await axios.get(HistoricalChart(id, days, currency));
-
     return data;
   }
 );
@@ -98,6 +97,11 @@ const cryptoSlice = createSlice({
           state.allCoins = action.payload;
         }
       )
+      .addCase(fetchSingleCoin.pending, (state) => {
+        console.log(state.loading);
+        state.loading = true;
+        console.log(state.loading);
+      })
       .addCase(
         fetchSingleCoin.fulfilled,
         (state, action: PayloadAction<any>) => {
@@ -106,15 +110,16 @@ const cryptoSlice = createSlice({
           state.loading = false;
         }
       )
-      .addCase(fetchSingleCoin.pending, (state) => {
-        console.log(state.loading);
-        state.loading = true;
-        console.log(state.loading);
-      })
       .addCase(fetchSingleCoin.rejected, (state) => {
         state.loading = false;
         state.error = "error";
-      });
+      })
+      .addCase(
+        fetchCoinHistory.fulfilled,
+        (state, action: PayloadAction<any>) => {
+          console.log(action.payload);
+        }
+      );
   },
 });
 
