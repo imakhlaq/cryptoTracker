@@ -39,8 +39,8 @@ const CoinPage = () => {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center">
-      <div className="mt-10 lg:border-r-2 lg:border-[gray] md:p-10 lg:max-w-2xl flex-shrink-0 mr-20">
+    <div className="flex flex-col lg:flex-row ">
+      <div className="mt-10 lg:border-r-2 lg:border-[gray] md:p-5 mr-20 lg:w-[40%]">
         <div className="flex flex-col justify-center items-center">
           <img
             src={singleCoin.image.large}
@@ -48,7 +48,7 @@ const CoinPage = () => {
             className=" h-64 mb-14"
           />
           <h2 className="text-6xl font-semibold">{singleCoin.name}</h2>
-          <p className="min-w-full lg:max-w-lg mt-3 ml-10 tracking-wide">
+          <p className="min-w-full lg:max-w-lg mt-3 ml-6 tracking-wide p-2">
             {parse(singleCoin.description.en.split(".")[0])}
           </p>
         </div>
@@ -84,7 +84,7 @@ const CoinPage = () => {
           </p>
         </div>
       </div>
-      <div className="mt-20 py-8 px-3 flex-1 min-w-full lg:min-w-0">
+      <div className="mt-20 lg:mt-0 flex-1 lg:pt-[15rem] -ml-10">
         <CoinInfo />
       </div>
     </div>
