@@ -2,6 +2,9 @@ import { useState } from "react";
 
 const SignPopUp = () => {
   const [auth, setAuth] = useState<"login" | "signup">("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
 
   return (
     <div className=" w-[20rem] bg-[#14161a] rounded-md shadow-xl">
@@ -23,18 +26,25 @@ const SignPopUp = () => {
           SING UP
         </button>
       </div>
-      <div className="flex flex-col gap-4 mt-2 p-3 text-white">
+
+      <form className="flex flex-col gap-4 mt-2 p-3 text-white">
         <input
           type="email"
           className=" h-10 px-4 rounded-md focus:outline-none placeholder:text-[gray]"
           placeholder="Enter Email Address"
           required
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value!)
+          }
         />
         <input
           type="password"
           className=" h-10 px-4 rounded-md focus:outline-none placeholder:text-[gray]"
           placeholder="Enter Password"
           required
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value!)
+          }
         />
         {auth === "signup" ? (
           <input
@@ -42,9 +52,18 @@ const SignPopUp = () => {
             className=" h-10 px-4 rounded-md focus:outline-none placeholder:text-[gray]"
             placeholder="Confirm Password"
             required
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setConfirmPass(e.target.value!)
+            }
           />
         ) : null}
-      </div>
+        <button
+          type="submit"
+          className="h-10 px-4 rounded-md focus:outline-none bg-[gold] text-black font-semibold text-xl"
+        >
+          {auth === "login" ? "LogIn" : "SignUp"}
+        </button>
+      </form>
     </div>
   );
 };
