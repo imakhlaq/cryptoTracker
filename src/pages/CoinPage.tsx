@@ -40,7 +40,7 @@ const CoinPage = () => {
 
   return (
     <div className="flex flex-col lg:flex-row items-center ">
-      <div className="mt-10 md:border-r-2 lg:border-[gray] md:p-10 lg:max-w-xl">
+      <div className="mt-10 lg:border-r-2 lg:border-[gray] md:p-17 lg:max-w-lg">
         <div className="flex justify-center items-center flex-col">
           <img
             src={singleCoin.image.large}
