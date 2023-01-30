@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <main className="h-screen text-white">
+    <main className=" text-white">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
