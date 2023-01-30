@@ -8,7 +8,7 @@ export function BackDrop({ closeModal }: Props) {
   return (
     <div
       onClick={() => closeModal(false)}
-      className="fixed top-0 right-0 left-0 bottom-0 bg-black/50 z-30 overflow-x-hidden overflow-y-hidden w-full h-full"
+      className="fixed top-0 right-0 left-0 bottom-0 bg-black/50 z-30"
     />
   );
 }
@@ -21,6 +21,9 @@ export function Modal({ closeModal, children }: ModalProps) {
   return createPortal(
     <>
       <BackDrop closeModal={closeModal} />
+      <div className="fixed top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-40">
+        {children}
+      </div>
     </>,
     document.getElementById("modal")!
   );
