@@ -7,6 +7,7 @@ import parse from "html-react-parser";
 import { numberWithCommas } from "../utils/priseWithCommas";
 import axios from "axios";
 import { SingleCoin } from "../api/configs";
+import Loading from "../components/Loading";
 
 const CoinPage = () => {
   const { id } = useParams();
@@ -35,12 +36,12 @@ const CoinPage = () => {
   }, []);
 
   if (load) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   return (
-    <div className="flex flex-col lg:flex-row items-center ">
-      <div className="mt-10 lg:border-r-2 lg:border-[gray] md:p-17 lg:max-w-lg">
+    <div className="flex flex-col lg:flex-row items-center p-2">
+      <div className="mt-10 lg:border-r-2 lg:border-[gray] md:p-10 lg:max-w-2xl flex-shrink-0 mr-20">
         <div className="flex justify-center items-center flex-col">
           <img
             src={singleCoin.image.large}
@@ -52,7 +53,7 @@ const CoinPage = () => {
             {parse(singleCoin.description.en.split(".")[0])}
           </p>
         </div>
-        <div className="text-left items-start font-extrabold text-3xl flex flex-col gap-4 mt-10 ml-10 ">
+        <div className="text-left items-start font-extrabold text-3xl flex flex-col gap-4 mt-10 ml-4">
           <p>
             Rank:{" "}
             <span className=" font-extralight">

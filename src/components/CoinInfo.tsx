@@ -5,6 +5,7 @@ import { fetchCoinHistory } from "../store/cryptoSlice/cryptoSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { Chart, PointElement } from "chart.js/auto";
 import { chartDays } from "../api/data";
+import Loading from "./Loading";
 
 const CoinInfo = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const CoinInfo = () => {
   }, [currency, days]);
 
   if (loading) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
   Chart.register(PointElement);
   const labels = prices.map((coin) => {
