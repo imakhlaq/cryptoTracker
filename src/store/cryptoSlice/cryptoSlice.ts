@@ -6,7 +6,7 @@ import {
   SingleCoin,
   HistoricalChart,
 } from "../../api/configs";
-import { CoinType } from "../../../typing";
+import { CoinType, History } from "../../../typing";
 
 type InitialType = {
   currency: string;
@@ -16,6 +16,7 @@ type InitialType = {
   singleCoin: any;
   loading: boolean;
   error: null | string;
+  history: History;
 };
 
 const initialState: InitialType = {
@@ -26,6 +27,7 @@ const initialState: InitialType = {
   singleCoin: {},
   loading: false,
   error: null,
+  history: {} as History,
 };
 
 export const fetchTrendingCoins = createAsyncThunk(
@@ -98,9 +100,7 @@ const cryptoSlice = createSlice({
         }
       )
       .addCase(fetchSingleCoin.pending, (state) => {
-        console.log(state.loading);
         state.loading = true;
-        console.log(state.loading);
       })
       .addCase(
         fetchSingleCoin.fulfilled,
@@ -116,8 +116,8 @@ const cryptoSlice = createSlice({
       })
       .addCase(
         fetchCoinHistory.fulfilled,
-        (state, action: PayloadAction<any>) => {
-          console.log(action.payload);
+        (state, action: PayloadAction<History>) => {
+          state.history = action.payload;
         }
       );
   },

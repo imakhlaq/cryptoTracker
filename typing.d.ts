@@ -33,3 +33,9 @@ export type CoinType = {
   last_updated: string;
   price_change_percentage_24h_in_currency: number;
 };
+
+export type History = {
+  prices: number[][];
+  market_caps: number[][];
+  total_volumes: number[][];
+};
