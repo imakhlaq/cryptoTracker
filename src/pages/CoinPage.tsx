@@ -39,16 +39,16 @@ const CoinPage = () => {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row items-center p-2">
+    <div className="flex flex-col lg:flex-row items-center justify-center">
       <div className="mt-10 lg:border-r-2 lg:border-[gray] md:p-10 lg:max-w-2xl flex-shrink-0 mr-20">
-        <div className="flex justify-center items-center flex-col">
+        <div className="flex flex-col justify-center items-center">
           <img
             src={singleCoin.image.large}
             alt={singleCoin.name}
             className=" h-64 mb-14"
           />
           <h2 className="text-6xl font-semibold">{singleCoin.name}</h2>
-          <p className="text-center px-5 max-w-md lg:max-w-lg mt-3 tracking-wide">
+          <p className="min-w-full lg:max-w-lg mt-3 ml-10 tracking-wide">
             {parse(singleCoin.description.en.split(".")[0])}
           </p>
         </div>
