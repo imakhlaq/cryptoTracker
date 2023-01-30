@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchSingleCoin } from "../store/cryptoSlice/cryptoSlice";
 import { useAppDispatch } from "../store/hooks";
@@ -16,14 +16,16 @@ const CoinPage = () => {
   const symbol = useAppSelector((state) => state.crypto.symbol);
   const loading = useAppSelector((state) => state.crypto.loading);
 
+  const [load, setLoad] = useState(true);
+
   useEffect(() => {
     console.log("code");
     dispatch(fetchSingleCoin(id!));
+    setLoad(false);
   }, []);
 
-  console.log(loading);
-  if (loading) {
-    return;
+  if (load) {
+    return <p>Loading</p>;
   }
 
   return (
@@ -40,7 +42,7 @@ const CoinPage = () => {
             {parse(singleCoin?.description?.en.split(".")[0])}
           </p>
         </div>
-        <div className="text-left md:text-center md:items-start font-extrabold text-3xl flex flex-col gap-4 mt-10 ml-12">
+        <div className="text-left items-start font-extrabold text-3xl flex flex-col gap-4 mt-10 ml-10 md:ml-14 lg:ml-0">
           <p>
             Rank:{" "}
             <span className=" font-extralight">

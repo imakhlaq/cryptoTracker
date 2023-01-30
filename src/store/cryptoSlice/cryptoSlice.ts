@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { TrendingCoins, CoinList, SingleCoin } from "../../api/configs";
+import {
+  TrendingCoins,
+  CoinList,
+  SingleCoin,
+  HistoricalChart,
+} from "../../api/configs";
 import { CoinType } from "../../../typing";
 
 type InitialType = {
@@ -48,6 +53,21 @@ export const fetchSingleCoin = createAsyncThunk(
     } catch (err) {
       console.log(err);
     }
+  }
+);
+
+type HistoryType = {
+  id: string | undefined;
+  days: number;
+  currency: string;
+};
+
+export const fetchCoinHistory = createAsyncThunk(
+  "crypto/fetchCoinHistory",
+  async ({ id, days, currency }: HistoryType) => {
+    const { data } = await axios.get(HistoricalChart(id, days, currency));
+
+    return data;
   }
 );
 

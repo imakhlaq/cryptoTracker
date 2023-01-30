@@ -9,4 +9,7 @@
   body {
     @apply bg-[#14161a];
   }
+  a {
+    @apply text-[gold];
+  }
 }
