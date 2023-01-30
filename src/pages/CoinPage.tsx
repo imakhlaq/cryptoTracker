@@ -84,7 +84,7 @@ const CoinPage = () => {
           </p>
         </div>
       </div>
-      <div className="mt-20 lg:mt-0 flex-1 lg:pt-[15rem] -ml-10">
+      <div className="mt-20 lg:mt-0 flex-1 lg:pt-[15rem] lg:-ml-10">
         <CoinInfo />
       </div>
     </div>

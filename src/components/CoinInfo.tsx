@@ -51,7 +51,7 @@ const CoinInfo = () => {
           },
         }}
       />
-      <div className="flex gap-6 justify-around mt-9">
+      <div className="flex gap-6 justify-around mt-9 p-8">
         {chartDays.map((btn) => (
           <button
             className={`py-2 px-4 md:px-6 bg-[gray] rounded-md ${
