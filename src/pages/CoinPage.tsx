@@ -40,7 +40,7 @@ const CoinPage = () => {
 
   return (
     <div className="flex flex-col lg:flex-row">
-      <div className="mt-10 md:border-r-2 md:border-[gray] md:p-10 max-w-4xl">
+      <div className="mt-10 md:border-r-2 lg:border-[gray] md:p-10 lg:max-w-xl">
         <div className="flex justify-center items-center flex-col">
           <img
             src={singleCoin.image.large}
@@ -52,7 +52,7 @@ const CoinPage = () => {
             {parse(singleCoin.description.en.split(".")[0])}
           </p>
         </div>
-        <div className="text-left items-start font-extrabold text-3xl flex flex-col gap-4 mt-10 ml-10 md:ml-14 lg:ml-0">
+        <div className="text-left items-start font-extrabold text-3xl flex flex-col gap-4 mt-10 ml-10 md:ml-0 lg:ml-0">
           <p>
             Rank:{" "}
             <span className=" font-extralight">

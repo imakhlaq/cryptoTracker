@@ -25,7 +25,7 @@ const initialState: InitialType = {
   trendingCoins: [],
   allCoins: [],
   singleCoin: {},
-  loading: false,
+  loading: true,
   error: null,
   history: {} as History,
 };
@@ -114,10 +114,14 @@ const cryptoSlice = createSlice({
         state.loading = false;
         state.error = "error";
       })
+      .addCase(fetchCoinHistory.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(
         fetchCoinHistory.fulfilled,
         (state, action: PayloadAction<History>) => {
           state.history = action.payload;
+          state.loading = false;
         }
       );
   },
