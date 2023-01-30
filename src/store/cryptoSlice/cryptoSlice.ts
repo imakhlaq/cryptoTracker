@@ -5,7 +5,7 @@ import {
   CoinList,
   SingleCoin,
   HistoricalChart,
-} from "../../api/configs";
+} from "../../config/configs";
 import { CoinType, History } from "../../../typing";
 
 type InitialType = {

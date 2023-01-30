@@ -6,7 +6,7 @@ import CoinInfo from "../components/CoinInfo";
 import parse from "html-react-parser";
 import { numberWithCommas } from "../utils/priseWithCommas";
 import axios from "axios";
-import { SingleCoin } from "../api/configs";
+import { SingleCoin } from "../config/configs";
 import Loading from "../components/Loading";
 
 const CoinPage = () => {
