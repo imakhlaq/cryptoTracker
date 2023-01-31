@@ -3,9 +3,9 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth as authFirebase } from "../firebase";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { addUser } from "../store/cryptoSlice/authSlice";
 
 type Props = {
@@ -66,10 +66,14 @@ const SignPopUp = ({ setModal }: Props) => {
 
   useEffect(() => {
     onAuthStateChanged(authFirebase, (user) => {
-      if (user) dispatch(addUser(user));
+      const uid = user?.uid;
+      const email = user?.email;
+      const userName = user?.displayName;
+
+      if (user) dispatch(addUser({ uid, email, userName }));
       else dispatch(addUser(null));
     });
-  }, []);
+  }, [authFirebase]);
 
   return (
     <div className=" w-[20rem] bg-[#14161a] rounded-md shadow-xl">
@@ -142,6 +146,3 @@ const SignPopUp = ({ setModal }: Props) => {
   );
 };
 export default SignPopUp;
-function useEffect(arg0: () => void, arg1: never[]) {
-  throw new Error("Function not implemented.");
-}

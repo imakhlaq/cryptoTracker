@@ -1,8 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "firebase/auth";
 
+type Myuser = {
+  email: string | null | undefined;
+  userName: string | null | undefined;
+  uid: string | undefined;
+};
+
 type initialType = {
-  user: null | User;
+  user: null | Myuser;
 };
 
 const initialState: initialType = {
@@ -13,7 +19,7 @@ const authFirebase = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    addUser(state, action: PayloadAction<User | null>) {
+    addUser(state, action: PayloadAction<Myuser | null>) {
       console.log(state.user);
       state.user = action.payload;
       console.log(state.user);
@@ -24,3 +30,4 @@ const authFirebase = createSlice({
   },
 });
 export const { addUser, removeUser } = authFirebase.actions;
+export default authFirebase.reducer;

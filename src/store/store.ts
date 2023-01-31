@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cryptoReducer from "./cryptoSlice/cryptoSlice";
+import authSlice from "./cryptoSlice/authSlice";
 
 const store = configureStore({
-  reducer: { crypto: cryptoReducer },
+  reducer: { crypto: cryptoReducer, auth: authSlice },
 });
 export default store;
 
