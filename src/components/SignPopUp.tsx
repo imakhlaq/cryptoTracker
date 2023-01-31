@@ -34,6 +34,15 @@ const SignPopUp = ({ setModal }: Props) => {
           email,
           password
         );
+        onAuthStateChanged(authFirebase, (user) => {
+          const uid = user?.uid;
+          const picture = user?.photoURL;
+          const email = user?.email;
+          const userName = user?.displayName;
+
+          if (user) dispatch(addUser({ uid, email, userName, picture }));
+          else dispatch(addUser(null));
+        });
 
         setModal(false);
       } catch (err) {
@@ -56,6 +65,15 @@ const SignPopUp = ({ setModal }: Props) => {
           email,
           password
         );
+        onAuthStateChanged(authFirebase, (user) => {
+          const uid = user?.uid;
+          const picture = user?.photoURL;
+          const email = user?.email;
+          const userName = user?.displayName;
+
+          if (user) dispatch(addUser({ uid, email, userName, picture }));
+          else dispatch(addUser(null));
+        });
 
         setModal(false);
       } catch (err) {
@@ -63,18 +81,6 @@ const SignPopUp = ({ setModal }: Props) => {
       }
     }
   };
-
-  useEffect(() => {
-    onAuthStateChanged(authFirebase, (user) => {
-      const uid = user?.uid;
-      const picture = user?.photoURL;
-      const email = user?.email;
-      const userName = user?.displayName;
-
-      if (user) dispatch(addUser({ uid, email, userName, picture }));
-      else dispatch(addUser(null));
-    });
-  }, [authFirebase]);
 
   return (
     <div className=" w-[20rem] bg-[#14161a] rounded-md shadow-xl">
