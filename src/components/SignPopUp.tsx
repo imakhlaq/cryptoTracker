@@ -1,4 +1,8 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { useState } from "react";
 import { auth as authFirebase } from "../firebase";
 import { useAppDispatch } from "../store/hooks";
@@ -24,6 +28,17 @@ const SignPopUp = ({ setModal }: Props) => {
         setInvalid(true);
         return;
       }
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          authFirebase,
+          email,
+          password
+        );
+
+        setModal(false);
+      } catch (err) {
+        setInvalid(true);
+      }
     }
 
     if (auth === "signup") {
@@ -42,13 +57,19 @@ const SignPopUp = ({ setModal }: Props) => {
           password
         );
 
-        dispatch(addUser(userCredential.user));
         setModal(false);
-
-        console.log(userCredential);
-      } catch (err) {}
+      } catch (err) {
+        setInvalid(true);
+      }
     }
   };
+
+  useEffect(() => {
+    onAuthStateChanged(authFirebase, (user) => {
+      if (user) dispatch(addUser(user));
+      else dispatch(addUser(null));
+    });
+  }, []);
 
   return (
     <div className=" w-[20rem] bg-[#14161a] rounded-md shadow-xl">
@@ -121,3 +142,6 @@ const SignPopUp = ({ setModal }: Props) => {
   );
 };
 export default SignPopUp;
+function useEffect(arg0: () => void, arg1: never[]) {
+  throw new Error("Function not implemented.");
+}

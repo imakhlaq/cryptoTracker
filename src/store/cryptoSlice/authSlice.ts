@@ -13,8 +13,10 @@ const authFirebase = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    addUser(state, action: PayloadAction<User>) {
+    addUser(state, action: PayloadAction<User | null>) {
+      console.log(state.user);
       state.user = action.payload;
+      console.log(state.user);
     },
     removeUser(state) {
       state.user = null;
