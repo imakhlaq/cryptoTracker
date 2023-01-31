@@ -5,6 +5,7 @@ type Myuser = {
   email: string | null | undefined;
   userName: string | null | undefined;
   uid: string | undefined;
+  picture: string | null | undefined;
 };
 
 type initialType = {

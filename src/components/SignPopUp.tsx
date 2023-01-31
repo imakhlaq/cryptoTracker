@@ -67,10 +67,11 @@ const SignPopUp = ({ setModal }: Props) => {
   useEffect(() => {
     onAuthStateChanged(authFirebase, (user) => {
       const uid = user?.uid;
+      const picture = user?.photoURL;
       const email = user?.email;
       const userName = user?.displayName;
 
-      if (user) dispatch(addUser({ uid, email, userName }));
+      if (user) dispatch(addUser({ uid, email, userName, picture }));
       else dispatch(addUser(null));
     });
   }, [authFirebase]);
