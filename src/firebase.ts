@@ -11,7 +11,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 //above varible will be the entry point for our app
 
 //auth
-const auth = getAuth(firebaseApp);
+ const auth = getAuth(firebaseApp);
 
 //for databse
 const db = getFirestore(firebaseApp);

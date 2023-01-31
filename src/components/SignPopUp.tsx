@@ -1,13 +1,23 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { auth as authFirebase } from "../firebase";
+import { useAppDispatch } from "../store/hooks";
+import { addUser } from "../store/cryptoSlice/authSlice";
 
-const SignPopUp = () => {
+type Props = {
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const SignPopUp = ({ setModal }: Props) => {
   const [auth, setAuth] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [invalid, setInvalid] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (auth === "login") {
       if (password.trim().length === 0 || email.trim().length === 0) {
@@ -25,6 +35,18 @@ const SignPopUp = () => {
         setInvalid(true);
         return;
       }
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          authFirebase,
+          email,
+          password
+        );
+
+        dispatch(addUser(userCredential.user));
+        setModal(false);
+
+        console.log(userCredential);
+      } catch (err) {}
     }
   };
 

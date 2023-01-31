@@ -15,7 +15,7 @@ const AuthModal = () => {
       </button>
       {open && (
         <Modal closeModal={setModal}>
-          <SignPopUp />
+          <SignPopUp setModal={setModal}/>
         </Modal>
       )}
     </>
