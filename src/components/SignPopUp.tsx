@@ -84,6 +84,7 @@ const SignPopUp = ({ setModal }: Props) => {
 
   return (
     <div className=" w-[20rem] bg-[#14161a] rounded-md shadow-xl">
+      <div className=" text-red-700 text-center">Upcoming Feature</div>
       <div className="text-white flex justify-between text-lg  font-semibold mt-4 p-3 shadow-2xl">
         <button
           onClick={() => setAuth("login")}
