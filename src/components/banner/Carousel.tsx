@@ -4,6 +4,7 @@ import { fetchTrendingCoins } from "../../store/cryptoSlice/cryptoSlice";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
 import { numberWithCommas } from "../../utils/priseWithCommas";
+import img from "../../assets/banner2.jpg";
 const Carousel = () => {
   const dispatch = useAppDispatch();
   const trendingCoins = useAppSelector((state) => state.crypto.trendingCoins);
@@ -19,11 +20,11 @@ const Carousel = () => {
     return (
       <Link className="" to={`/coins/${coin.id}`}>
         <div className="flex flex-col gap-2 justify-center items-center">
-          <img src={coin.image} alt={coin.name} className="h-20" />
+          <img src={`${img}`} alt={coin.name} className="h-20" />
           <div className="flex justify-center items-center gap-3">
             <span className="text-[gold]">{coin.symbol}</span>
             <span className={`${profit ? "text-green-500" : "text-red-600"}`}>
-            {profit ?"+":""} {coin.price_change_percentage_24h.toFixed(2)}
+              {profit ? "+" : ""} {coin.price_change_percentage_24h.toFixed(2)}
             </span>
           </div>
           <div className="flex items-center justify-center gap-2 text-base md:text-base font-bold lg:text-2xl">
