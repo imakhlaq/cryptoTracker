@@ -20,7 +20,7 @@ const Carousel = () => {
     return (
       <Link className="" to={`/coins/${coin.id}`}>
         <div className="flex flex-col gap-2 justify-center items-center">
-          <img src={`${img}`} alt={coin.name} className="h-20" />
+          <img src={`${coin.image}`} alt={coin.name} className="h-20" />
           <div className="flex justify-center items-center gap-3">
             <span className="text-[gold]">{coin.symbol}</span>
             <span className={`${profit ? "text-green-500" : "text-red-600"}`}>
