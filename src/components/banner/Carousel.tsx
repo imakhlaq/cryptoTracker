@@ -4,7 +4,7 @@ import { fetchTrendingCoins } from "../../store/cryptoSlice/cryptoSlice";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
 import { numberWithCommas } from "../../utils/priseWithCommas";
-import img from "../../assets/banner2.jpg";
+
 const Carousel = () => {
   const dispatch = useAppDispatch();
   const trendingCoins = useAppSelector((state) => state.crypto.trendingCoins);
