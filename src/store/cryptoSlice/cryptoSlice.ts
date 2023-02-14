@@ -48,7 +48,7 @@ export const fetchAllCoins = createAsyncThunk(
 
 export const fetchSingleCoin = createAsyncThunk(
   "crypto/fetchSingleCoin",
-  async (id: string, thunkApi) => {
+  async (id: string, thunkAPI) => {
     try {
       const { data } = await axios.get(SingleCoin(id));
       return data;
